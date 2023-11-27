@@ -1,0 +1,70 @@
+<!--
+Thomas Coates
+11/26/2023
+Final Project
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WEB-115 Final Project</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="banner">
+      <h1>Perfectly Portioned Fitness</h1>
+      <p>Build Your Meal Plan!</p>
+      <p>Thomas Coates<span id="name"></span></p>
+      <p>2023FA.WEB-115.0002<span id="course"></span></p>
+    </div>
+  </header>
+
+  <main>
+    <h2>Meal Planner</h2>
+    <form id="mealPlanForm">
+      <div class="form-group">
+        <label for="nameInput">Name:</label>
+        <input type="text" id="nameInput" required>
+      </div>
+      <div class="form-group">
+        <label for="emailInput">Email:</label>
+        <input type="email" id="emailInput" required>
+      </div>
+      <div class="form-group">
+        <label for="goalInput">Goal for the Week:</label>
+        <textarea id="goalInput" required></textarea>
+      </div>
+      
+      <h3>Meal Plan</h3>
+      <div class="form-group">
+        <label for="breakfastInput">Breakfast:</label>
+        <input type="text" id="breakfastInput" required>
+      </div>
+      <div class="form-group">
+        <label for="snack1Input">Snack 1:</label>
+        <input type="text" id="snack1Input" required>
+      </div>
+      <div class="form-group">
+        <label for="lunchInput">Lunch:</label>
+        <input type="text" id="lunchInput" required>
+      </div>
+      <div class="form-group">
+        <label for="snack2Input">Snack 2:</label>
+        <input type="text" id="snack2Input" required>
+      </div>
+      <div class="form-group">
+        <label for="dinnerInput">Dinner:</label>
+        <input type="text" id="dinnerInput" required>
+      </div>
+      
+      <div class="form-group">
+        <button type="submit">Generate Meal Plan</button>
+        <button type="button" id="clearButton">Clear Planner</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="projectJS.js"></script>
+</body>
+</html>
