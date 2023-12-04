@@ -12,18 +12,13 @@ document.addEventListener('DOMContentLoaded', function() {
     mealPlanForm.addEventListener('submit', function(event) {
       event.preventDefault(); 
   
-      const name = nameInput.value.trim();
       const email = emailInput.value.trim();
-      const goal = goalInput.value.trim();
   
-      if (isValidEmail(email)) {
-        document.getElementById('name').textContent = name;
-        document.getElementById('email').textContent = email;
-        document.getElementById('goal').textContent = goal;
-  
-        generateMealPlan();
-      } else {
+      if (!isEmailValid(email)) {
         alert('Please enter a valid email address.');
+      } 
+      else {
+        generateMealPlan();
       }
     });
   
@@ -38,13 +33,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const lunch = document.getElementById('lunchInput').value.trim();
       const snack2 = document.getElementById('snack2Input').value.trim();
       const dinner = document.getElementById('dinnerInput').value.trim();
+      var daysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   
       const mealPlanWindow = window.open('', '_blank');
-      mealPlanWindow.document.write('<html><head><title>Your Meal Plan</title>');
-      mealPlanWindow.document.write('<style>');
-      mealPlanWindow.document.write('/* Styles for the meal plan table */');
-      mealPlanWindow.document.write('</style></head><body>');
-      mealPlanWindow.document.write('<h1>Your Meal Plan</h1>');
+      mealPlanWindow.document.write('<html><head><title>Your Meal Plan</title>');   
+      mealPlanWindow.document.write('</head><body>');
+      mealPlanWindow.document.write("<h1>Your Meal Plan</h1>");
       mealPlanWindow.document.write('<div class="personal-info">');
       mealPlanWindow.document.write('<h2>Personal Information</h2>');
       mealPlanWindow.document.write('<p><strong>Name:</strong> ' + nameInput.value.trim() + '</p>');
@@ -53,10 +47,35 @@ document.addEventListener('DOMContentLoaded', function() {
       mealPlanWindow.document.write('</div>');
       mealPlanWindow.document.write('<h2>Meal Plan</h2>');
       mealPlanWindow.document.write('<table>');
-      mealPlanWindow.document.write('<tr><th>Meal</th><th>Menu</th></tr>');
+      mealPlanWindow.document.write("<ul>");
+      for (var i = 0; i < daysOfTheWeek.length; i++){
+        mealPlanWindow.document.write("<li style = 'color:blue'>" + daysOfTheWeek[i] + "-- Breakfast: ", breakfast, ", Snack 1: ", snack1, ", Lunch: ", lunch, ", Snack 2: ", snack2, ", Dinner: ", dinner,  "</li>");
+      }
+      mealPlanWindow.document.write("</ul>");
       mealPlanWindow.document.write('</table>');
+      mealPlanWindow.document.write("<button onclick='printCurrentPage()'>Print Meal Plan</button>")
+      mealPlanWindow.document.write("<button onclick='downloadCurrentPage()'>Download Meal Plan</button>")
       mealPlanWindow.document.write('</body></html>');
       mealPlanWindow.document.close();
+    }
+
+    function downloadCurrentPage() {
+        const content = mealPlanWindow.document;
+
+        const options = {
+        margin: 10,
+        filename: 'document.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        html2pdf(content, options);
+  
+    }
+
+    function printCurrentPage(){
+        mealPlanWindow.print();
     }
   
     function clearMealPlan() {
@@ -65,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('goal').textContent = '';
     }
   
-    function isValidEmail(email) {
+    function isEmailValid(email) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email);
     }

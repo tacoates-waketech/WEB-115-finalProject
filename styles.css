@@ -10,40 +10,37 @@ body {
     padding: 0;
   }
   
-  
   header {
     color: white;
     background-color: blue;
     padding: 20px;
   }
   
-  
+  h2 {
+    text-align: center;
+  }
+
   .banner {
     text-align: center;
   }
-  
   
   .banner h1 {
     font-size: 24px;
     margin: 0;
   }
   
-  
   .banner p {
     margin: 5px 0;
   }
-  
   
   main {
     padding: 20px;
   }
   
-  
   form {
     width: 400px;
     margin: 0 auto;
   }
-  
   
   .form-group {
     margin-bottom: 15px;
